@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import styles from './autocomplete.css';
-// import DefaultSearchBar from './DefaultSearchBar/DefaultSearchBar';
 import SearchBar from './SearchBar/SearchBar';
 import Movies from './Movies/Movies';
 import MovieIcon from './icons/MovieIcon';
@@ -10,7 +9,6 @@ export default class Autocomplete extends Component {
   constructor() {
     super();
     this.state = {
-      // loading: false,
       movies: [],
       searchText: ''
     };
@@ -23,8 +21,6 @@ export default class Autocomplete extends Component {
 
     this.setState({ searchText: updatedSearchText, pickedMovie: false });
 
-    console.log(updatedSearchText.length);
-    console.log(updatedSearchText);
     searchStrLength >= minSearchLetters ? this.updateResults() : this.resetMovies();
   };
 
