@@ -1,0 +1,25 @@
+import React, { Component } from 'react';
+import styles from '../autocomplete.css';
+import MovieIcon from '../icons/MovieIcon';
+
+export default class ActiveSearchBar extends Component {
+  render() {
+    const { searchText, onSearchChange, pickedMovie, onEscPressed } = this.props;
+    return (
+      <React.Fragment>
+        <div className={!searchText || pickedMovie ? styles.searchBar : styles.searchBarActive}>
+          <div className={styles.movieIcon}>
+            <MovieIcon />
+          </div>
+          <input
+            value={searchText}
+            onChange={event => onSearchChange(event)}
+            onKeyUp={event => onEscPressed(event)}
+            placeholder="Enter movie name"
+          />
+          <span>Enter a movie name</span>
+        </div>
+      </React.Fragment>
+    );
+  }
+}

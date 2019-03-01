@@ -1,2 +1,174 @@
 .container {
+  background: rgb(255, 105, 15);
+  background: linear-gradient(90deg, rgba(255, 105, 15, 1) 0%, rgba(232, 57, 26, 1) 100%);
+  height: 6em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.innerContainer {
+  width: 95%;
+  position: relative;
+}
+
+.searchBar {
+  background: rgb(255, 132, 73);
+  background: linear-gradient(90deg, rgba(255, 132, 73, 1) 0%, rgba(238, 99, 76, 1) 100%);
+  border: none;
+  width: 100%;
+  height: 4em;
+  border: none;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.searchBarActive {
+  background: white;
+  border: none;
+  width: 93%;
+  height: 4.5em;
+  border: none;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  position: absolute;
+  top: -0.5em;
+  right: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+input {
+  background: none;
+  border: none;
+  width: 100%;
+  display: block;
+  padding-left: 10px;
+  font-size: 1.2em;
+}
+
+.searchBar > input {
+  color: white;
+}
+
+input:focus {
+  outline: none;
+}
+
+input::placeholder {
+  color: #fff;
+}
+
+.searchBarActive > input {
+  padding-left: 0;
+  margin-left: 0;
+}
+
+.movieIcon {
+  width: 4em;
+  padding-left: 0.5em;
+  min-height: 2.5em;
+  display: inline-block;
+  color: white;
+  position: relative;
+}
+
+.movieIcon > :first-child {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  height: 100%;
+}
+
+.searchBarActive > .movieIcon {
+  color: black;
+}
+
+.searchIcon {
+  width: 5%;
+  height: 4em;
+  background: white;
+  margin-left: 3px;
+  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 5px;
+}
+
+.searchIcon > :first-child {
+  color: rgb(255, 132, 73);
+  width: 80%;
+}
+
+.moviesList {
+  width: 93%;
+  background: white;
+  position: absolute;
+  margin: 0 auto;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.2);
+  right: 0;
+}
+
+.movieItem {
+  height: 4em;
+  width: 100%;
+  padding-left: 4em;
+  display: flex;
+  align-items: center;
+}
+
+.movieItem:hover {
+  cursor: pointer;
+  background: rgb(252, 252, 252);
+}
+
+.movieItem > h3 {
+  font-weight: strong;
+}
+
+h3,
+h5 {
+  padding: 0;
+  margin: 0;
+}
+
+span {
+  position: absolute;
+  left: 4em;
+  top: 3em;
+  padding: 0;
+  margin: 0;
+}
+
+.searchBar > span {
+  display: none;
+}
+
+@media screen and (max-width: 767px) {
+  .searchBarActive {
+    width: 85%;
+  }
+  .moviesList {
+    width: 85%;
+  }
+
+  .searchIcon {
+    width: 13%;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+  .searchBarActive {
+    width: 90%;
+  }
+  .moviesList {
+    width: 90%;
+  }
+  .searchIcon {
+    width: 8%;
+  }
 }
