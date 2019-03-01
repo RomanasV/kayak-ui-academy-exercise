@@ -3,7 +3,8 @@ import styles from './autocomplete.css';
 import SearchBar from './SearchBar/SearchBar';
 import Movies from './Movies/Movies';
 import MovieIcon from './icons/MovieIcon';
-import SearchIcon from './icons/SearchIcon';
+
+import SearchButton from './SearchButton/SearchButton';
 
 export default class Autocomplete extends Component {
   constructor() {
@@ -26,6 +27,10 @@ export default class Autocomplete extends Component {
 
   resetMovies = () => {
     this.setState({ movies: [] });
+  };
+
+  resetSearchButton = () => {
+    this.setState({ searchButton: false });
   };
 
   updateResults = () => {
@@ -63,18 +68,23 @@ export default class Autocomplete extends Component {
     const escKeyCode = 27;
     event.keyCode === escKeyCode &&
       this.setState({
+        searchButton: false,
         searchText: ''
       });
   };
 
+  handleSearchButton = () => {
+    this.setState({ searchButton: true });
+  };
+
   render() {
-    const { searchText, pickedMovie, movies, loading } = this.state;
+    const { searchText, pickedMovie, movies, loading, searchButton } = this.state;
     return (
       <React.Fragment>
         <div className={styles.container}>
           <div className={styles.innerContainer}>
             <div className={styles.searchBar}>
-              {searchText && !pickedMovie && (
+              {((searchText && !pickedMovie) || searchButton) && (
                 <div className={styles.movieIcon}>
                   <MovieIcon />
                 </div>
@@ -87,11 +97,10 @@ export default class Autocomplete extends Component {
                 movieClicked={this.handleClickedMovie}
                 pickedMovie={pickedMovie}
                 onEscPressed={this.handleEscPressed}
+                searchButton={searchButton}
               />
-              {(!searchText || pickedMovie) && (
-                <div className={styles.searchIcon}>
-                  <SearchIcon />
-                </div>
+              {(!searchText || pickedMovie) && !searchButton && (
+                <SearchButton searchButtonClicked={this.handleSearchButton} />
               )}
             </div>
 

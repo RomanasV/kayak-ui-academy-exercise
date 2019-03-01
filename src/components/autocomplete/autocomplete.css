@@ -99,6 +99,10 @@ input::placeholder {
   margin-left: 5px;
 }
 
+.searchIcon:hover {
+  cursor: pointer;
+}
+
 .searchIcon > :first-child {
   color: rgb(255, 132, 73);
   width: 80%;
