@@ -56,7 +56,8 @@ export default class Autocomplete extends Component {
     const movieTitle = movie.title;
     this.setState(prevState => ({
       pickedMovie: { ...prevState.pickedMovie, movie },
-      searchText: movieTitle
+      searchText: movieTitle,
+      searchButton: false
     }));
   };
 
