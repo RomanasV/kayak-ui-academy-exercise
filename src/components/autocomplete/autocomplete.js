@@ -19,10 +19,10 @@ export default class Autocomplete extends Component {
   handleSearch = event => {
     const updatedSearchText = event.target.value;
     const searchStrLength = updatedSearchText.length;
-
     this.setState({ searchText: updatedSearchText, pickedMovie: false });
-
-    searchStrLength >= config.MIN_SEARCH_LETTERS ? this.updateResults() : this.resetMovies();
+    searchStrLength >= config.MIN_SEARCH_LETTERS
+      ? this.updateResults(updatedSearchText)
+      : this.resetMovies();
   };
 
   resetMovies = () => {
@@ -33,11 +33,10 @@ export default class Autocomplete extends Component {
     this.setState({ searchButton: false });
   };
 
-  updateResults = () => {
+  updateResults = updatedSearchText => {
     this.setState({ loading: true });
-    const searchTextStr = this.state.searchText;
 
-    fetch(config.API_LINK(searchTextStr))
+    fetch(config.API_LINK(updatedSearchText))
       .then(response => response.json())
       .then(data => {
         const moviesList = data.results.splice(0, config.MAX_MOVIES);

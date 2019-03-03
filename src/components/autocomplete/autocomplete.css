@@ -128,7 +128,7 @@ input::placeholder {
 
 .movieItem:hover {
   cursor: pointer;
-  background: rgb(252, 252, 252);
+  background: rgb(250, 250, 250);
 }
 
 .movieItem > h3 {
