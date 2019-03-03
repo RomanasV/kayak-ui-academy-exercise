@@ -46,6 +46,7 @@ input {
   width: 100%;
   display: block;
   padding-left: 10px;
+  padding-right: 0;
   font-size: 1.2em;
 }
 
@@ -140,7 +141,7 @@ h5 {
   margin: 0;
 }
 
-span {
+.extraText {
   position: absolute;
   left: 4em;
   top: 3em;
@@ -148,7 +149,7 @@ span {
   margin: 0;
 }
 
-.searchBar > span {
+.searchBar > .extraText {
   display: none;
 }
 

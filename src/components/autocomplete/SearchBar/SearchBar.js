@@ -25,7 +25,8 @@ export default class ActiveSearchBar extends Component {
             onKeyUp={event => onEscPressed(event)}
             placeholder="Enter movie name"
           />
-          <span>Enter a movie name</span>
+
+          <span className={styles.extraText}>Enter a movie name</span>
         </div>
       </React.Fragment>
     );

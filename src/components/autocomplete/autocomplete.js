@@ -3,6 +3,7 @@ import styles from './autocomplete.css';
 import SearchBar from './SearchBar/SearchBar';
 import Movies from './Movies/Movies';
 import MovieIcon from './icons/MovieIcon';
+import config from './config';
 
 import SearchButton from './SearchButton/SearchButton';
 
@@ -16,13 +17,12 @@ export default class Autocomplete extends Component {
   }
 
   handleSearch = event => {
-    const minSearchLetters = 3;
     const updatedSearchText = event.target.value;
     const searchStrLength = updatedSearchText.length;
 
     this.setState({ searchText: updatedSearchText, pickedMovie: false });
 
-    searchStrLength >= minSearchLetters ? this.updateResults() : this.resetMovies();
+    searchStrLength >= config.MIN_SEARCH_LETTERS ? this.updateResults() : this.resetMovies();
   };
 
   resetMovies = () => {
@@ -35,14 +35,12 @@ export default class Autocomplete extends Component {
 
   updateResults = () => {
     this.setState({ loading: true });
-    const maxMovies = 8;
     const searchTextStr = this.state.searchText;
-    const linkToApi = `https://api.themoviedb.org/3/search/movie?api_key=cab2afe8b43cf5386e374c47aeef4fca&language=en-US&query=${searchTextStr}&page=1&include_adult=false`;
 
-    fetch(linkToApi)
+    fetch(config.API_LINK(searchTextStr))
       .then(response => response.json())
       .then(data => {
-        const moviesList = data.results.splice(0, maxMovies);
+        const moviesList = data.results.splice(0, config.MAX_MOVIES);
         this.setState({
           loading: false,
           movies: moviesList
@@ -51,8 +49,7 @@ export default class Autocomplete extends Component {
   };
 
   listMovies = () => {
-    const maxMovies = 8;
-    const moviesList = this.state.movies.results.splice(0, maxMovies);
+    const moviesList = this.state.movies.results.splice(0, config.MAX_MOVIES);
     return moviesList;
   };
 
@@ -65,8 +62,7 @@ export default class Autocomplete extends Component {
   };
 
   handleEscPressed = event => {
-    const escKeyCode = 27;
-    event.keyCode === escKeyCode &&
+    event.keyCode === config.ESC_KEY &&
       this.setState({
         searchButton: false,
         searchText: ''
